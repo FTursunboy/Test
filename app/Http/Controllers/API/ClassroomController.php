@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\ClassroomInterface;
+use App\Http\Requests\PlanRequest;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\ClassroomResource;
@@ -45,18 +46,22 @@ class ClassroomController extends Controller implements ClassroomInterface
         ]);
 
     }
-    public function store(StudentRequest $request): JsonResponse
+    public function store(PlanRequest $request, int $classroomId): JsonResponse
     {
-        // TODO: Implement store() method.
+        $classroom = Classroom::findOrFail($classroomId);
+
+        $classroom->lectures()->attach($request['lecture_id'], ['order' => $request['order']]);
+
+        return response()->json(['message' => 'Учебный план успешно добавлен']);
+
     }
 
-    public function update(Student $student, StudentUpdateRequest $request): JsonResponse
-    {
-        // TODO: Implement update() method.
-    }
 
     public function destroy(int $id): JsonResponse
     {
-        // TODO: Implement destroy() method.
+        $classroom = Classroom::findOrFail($id);
+        $classroom->delete();
+
+        return response()->json(['message' => 'Успешно удалено']);
     }
 }
