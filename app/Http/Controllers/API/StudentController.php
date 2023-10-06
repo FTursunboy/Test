@@ -31,11 +31,10 @@ class StudentController extends Controller implements StudentInterface
 
     public function show(int $id): JsonResponse
     {
-        $student = Student::findOrfail($id);
+        $student = Student::findOrFail($id);
 
-        return response()->json([
-            'student' => new StudentResource($student)
-        ]);
+        return response()->json(new StudentResource($student));
+
     }
 
     public function store(StudentRequest $request): JsonResponse
@@ -60,8 +59,13 @@ class StudentController extends Controller implements StudentInterface
         ]);
     }
 
-    public function delete($id): bool
+    public function destroy (int $id): JsonResponse
     {
-        // TODO: Implement delete() method.
+        $student = Student::findOrFail($id);
+
+        $student->delete();
+
+        return response()->json(true);
+
     }
 }
