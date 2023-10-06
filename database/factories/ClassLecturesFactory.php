@@ -22,7 +22,6 @@ class ClassLecturesFactory extends Factory
         return [
             'classroom_id' => Classroom::factory(),
             'lecture_id' => Lecture::factory(),
-            'student_id' => Student::factory(),
             'order' => $this->faker->unique()->numberBetween(1, 10),
         ];
     }

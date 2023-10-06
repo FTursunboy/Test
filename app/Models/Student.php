@@ -11,14 +11,16 @@ class Student extends Model
 
     protected $fillable = ['name', 'email', 'classroom_id'];
 
+    public function lectures()
+    {
+        return $this->classroom->lectures();
+    }
+
     public function classroom() {
         return $this->belongsTo(Classroom::class, 'classroom_id');
     }
 
-    public function lectures()
-    {
-        return $this->belongsToMany(Lecture::class, 'class_lectures');
-    }
+
 
 
 }

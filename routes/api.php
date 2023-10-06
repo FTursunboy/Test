@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('students', \App\Http\Controllers\API\StudentController::class);
+Route::apiResource('classes', \App\Http\Controllers\API\ClassroomController::class);
+Route::get('classes/getPlan/{id}', [\App\Http\Controllers\Api\ClassroomController::class, 'getClassInfo']);

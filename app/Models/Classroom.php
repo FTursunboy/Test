@@ -12,7 +12,7 @@ class Classroom extends Model
     protected $fillable = ['name'];
 
     public function students() {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class, 'classroom_id');
     }
 
 

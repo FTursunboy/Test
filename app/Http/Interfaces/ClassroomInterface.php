@@ -8,7 +8,7 @@ use App\Models\Student;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\JsonResponse;
 
-interface StudentInterface {
+interface ClassroomInterface {
     public function index() : JsonResponse;
 
     public function show(int $id) : JsonResponse;
